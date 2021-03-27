@@ -8,10 +8,14 @@ Processor for fiction-master
 Copyright(c): DFSA Software Develop Center
 """
 import sys
+from tools import manager
 
 
 def main(arg_list: dict):
-    pass
+    print('Starting getting...')
+    downloader = manager.get_downloader(arg_list['website'])
+    downloader_pointer = downloader(arg_list)
+    downloader_pointer.main()
 
 
 if __name__ == '__main__':

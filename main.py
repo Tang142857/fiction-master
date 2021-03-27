@@ -28,6 +28,11 @@ class ArgList(object):
 if __name__ == '__main__':
     arg = ArgList(sys.argv)
     print(f'Generating tasks argument list...')
-    argument={
-        'name':
-    }
+    argument = {'name': 'non-human', 'website': 'biqugei', 'extend': {'url': ''}}
+
+    # process the argument from consol start
+    url = arg.url
+    argument['extend'].update({'url': url})
+    # process the argument end
+
+    process.main(argument)
