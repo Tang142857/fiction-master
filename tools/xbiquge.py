@@ -34,7 +34,11 @@ class BiqugeNewSpider(object):
             content_element = soup.select('#content')[0]
 
             text = content_element.text.replace(ad_element.text, '')
-            print(task[1],':',text)
+            print(task[1], ':', text)
+
+            with open(f'/home/tang/file/private/relaxing/customer/fiction/dldl/{task[1]}.txt', 'w',
+                      encoding='utf-8') as f:
+                f.write(text)
 
 
 if __name__ == '__main__':
