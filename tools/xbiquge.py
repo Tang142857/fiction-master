@@ -50,7 +50,7 @@ downloader = BiqugeNewSpider
 if __name__ == '__main__':
     d = BiqugeNewSpider({
         'extend': {
-            'url': 'http://www.xbiquge.la/14/14591/',
+            'url': 'http://www.xbiquge.la/23/23466/',
             'output_dir': '/home/tang/file/private/relaxing/customer/fiction/xdldl'
         }
     })

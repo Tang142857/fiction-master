@@ -9,15 +9,13 @@ All tools will be managed by manager ,don't use tools directly.
 Copyright(c): DFSA Software Develop Center
 """
 import importlib
-import sys
-
-sys.path.append(__name__)  # add my self to path ,will be more convenient
 
 
 def get_downloader(website: str):
     """Get the downloader by website name."""
     model = importlib.import_module(website)
     return model.downloader
+
 
 """
 Write some websites' host names here.

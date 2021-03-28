@@ -24,6 +24,13 @@ class ArgList(object):
     def __str__(self):
         return str(dir(self))
 
+    def __getattribute__(self, name):
+        # to avoid the attribute error
+        try:
+            return super().__getattribute__(name)
+        except AttributeError:
+            return None
+
 
 if __name__ == '__main__':
     arg = ArgList(sys.argv)

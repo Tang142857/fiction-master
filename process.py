@@ -7,9 +7,10 @@ Processor for fiction-master
 @date: 2021-03-26
 Copyright(c): DFSA Software Develop Center
 """
-import sys
-from tools import manager
 import re
+import sys
+
+from tools import manager
 
 
 def main(arg_list: dict):
@@ -17,10 +18,11 @@ def main(arg_list: dict):
     # Always ,use the website arg is not convenient , so we should get the host name
     url = arg_list['extend']['url']
     searcher = re.compile(r'(http|https)://\w+.\w+.\w+/')
-    splitter=re.compile(r'(http|https)://(\w+).(\w+).(\w+)/')
+    splitter = re.compile(r'(http|https)://(\w+).(\w+).(\w+)/')
     result = searcher.search(url)
-    splitted=splitter.split(result.group())[1:-1]
-    host_name=splitted[2]
+    splitted = splitter.split(result.group())[1:-1]
+    host_name = splitted[2]
+    print(f'Getting downloader ,host name {host_name}')
     # get the host name end
 
     downloader = manager.get_downloader(host_name)
