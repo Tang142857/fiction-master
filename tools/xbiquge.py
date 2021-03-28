@@ -15,6 +15,11 @@ class BiqugeNewSpider(object):
     def __init__(self, arg_list: dict):
         # in this website ,just the home url is ok
         self.home_url = arg_list['extend']['url']
+        self.save_directory = arg_list['extend']['output_dir']
+        if self.save_directory.endswith('/'):
+            pass
+        else:
+            self.save_directory += '/'
 
     def main(self):
         source = requests.get(self.home_url).content
@@ -25,22 +30,28 @@ class BiqugeNewSpider(object):
             chapter_list.append([element['href'], element.text])
         # chapter list end
 
-        for task in chapter_list:
+        for index, task in enumerate(chapter_list):
             url = f'http://www.xbiquge.la{task[0]}'
             source = requests.get(url).content
             soup = BeautifulSoup(source, 'lxml')
+            # get html file
 
             ad_element = soup.select('#content > p')[0]
             content_element = soup.select('#content')[0]
-
             text = content_element.text.replace(ad_element.text, '')
-            print(task[1], ':', text)
+            # get and clean the content
+            print(f'\r{index}of{len(chapter_list)}--{task[1]}', end='')
 
-            with open(f'/home/tang/file/private/relaxing/customer/fiction/dldl/{task[1]}.txt', 'w',
-                      encoding='utf-8') as f:
+            with open(f'{self.save_directory}{task[1]}.txt', 'w', encoding='utf-8') as f:
                 f.write(text)
 
 
+downloader = BiqugeNewSpider
 if __name__ == '__main__':
-    d = BiqugeNewSpider({'extend': {'url': 'http://www.xbiquge.la/1/1710/'}})
+    d = BiqugeNewSpider({
+        'extend': {
+            'url': 'http://www.xbiquge.la/14/14591/',
+            'output_dir': '/home/tang/file/private/relaxing/customer/fiction/xdldl'
+        }
+    })
     d.main()
