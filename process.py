@@ -14,6 +14,10 @@ from tools import manager
 
 
 def main(arg_list: dict):
+    """
+    Main requires url as necessary argument ,we will use this to get the downloader.
+    Main will pass the arg_list to downloader too.
+    """
     print('Starting getting...')
     # Always ,use the website arg is not convenient , so we should get the host name
     url = arg_list['extend']['url']
